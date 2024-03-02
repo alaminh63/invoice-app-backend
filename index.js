@@ -51,12 +51,26 @@ async function run() {
     });
     app.patch("/updateInvoice/:id", async (req, res) => {
       const data = req.body;
-      const { name } = data;
+      const {
+        title,
+        issue,
+        issueQuantity,
+        itemUnit,
+        voucherDate,
+        returnDate,
+        description,
+      } = data;
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const updateInvoice = {
         $set: {
-          name: name,
+          title: title,
+          issue: issue,
+          issueQuantity: issueQuantity,
+          itemUnit: itemUnit,
+          voucherDate: voucherDate,
+          returnDate: returnDate,
+          description: description,
         },
       };
       const result = await invoiceCollection.updateOne(query, updateInvoice);
